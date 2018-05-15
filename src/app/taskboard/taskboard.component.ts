@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+import { StatusType } from "../constants";
+
 @Component({
   selector: 'task-board',
   templateUrl: './taskboard.component.html',
@@ -7,5 +9,11 @@ import { Component } from '@angular/core';
 })
 export class TaskboardComponent {
 
-  constructor() {}
+  private statusList = [StatusType.NotStarted, StatusType.InProgress, StatusType.Completed];
+
+  constructor() {
+  }
+
+  ngOnInit() {
+  }
 }

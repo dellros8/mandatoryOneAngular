@@ -8,6 +8,9 @@
   </button>
   
   <div class="lists">
+    <div *ngFor="let statusType of statusList">
+      <task-list [statusType]="statusType"></task-list>
+    </div>
     <!-- Markup for task lists here... -->
   </div>
 </div>
