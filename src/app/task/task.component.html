@@ -5,7 +5,10 @@
         {{ task.title }}
       </div>
       <!-- Markup for dropdown menu here... -->
-      {{ task.status }}
+      <select (change)="handleChange($event)">
+        <option *ngFor="let statusType of statusList"
+        value="{{ statusType }}" [selected]="statusType === task.status">{{ statusType }}</option>
+      </select>
   </div>
   <hr>
   <div class="body">

@@ -11,23 +11,13 @@ import { TaskService } from "../task.service";
 })
 export class TasklistComponent {
 
+  @Input() taskList: Task[];
   @Input() statusType: StatusType;
 
-  tasks: Task[];
 
   constructor(private taskService: TaskService) {}
 
   ngOnInit() {
-
-    this.taskService.getTasks(this.statusType)
-    .subscribe((tasks) => {
-      this.tasks = tasks;
-    });
     
-    
-  }
-
-  handleStatusChanged(ev) {
-
   }
 }

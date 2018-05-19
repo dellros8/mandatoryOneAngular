@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
-import { StatusType } from "../constants";
+import { Task, StatusType } from "../constants";
+
+import { TaskService } from "../task.service";
+
 
 @Component({
   selector: 'task-board',
@@ -9,11 +12,31 @@ import { StatusType } from "../constants";
 })
 export class TaskboardComponent {
 
-  private statusList = [StatusType.NotStarted, StatusType.InProgress, StatusType.Completed];
+  taskList: Task[] = [];
+  statusList: StatusType[] = [StatusType.NotStarted, StatusType.InProgress, StatusType.Completed];
+  showTaskForm: boolean = false;
 
-  constructor() {
+  constructor(private taskService: TaskService) {
   }
 
   ngOnInit() {
+    this.taskService.getTasks()
+      .subscribe((tasks) => {
+        this.taskList = tasks;
+      });
+
+  }
+
+  filterTasks(statusType: StatusType, taskList: Task[]) {
+    return this.taskService.filterTasks(statusType, taskList);
+  }
+
+  displayForm() {
+    this.showTaskForm = !this.showTaskForm;
+  }
+
+  saveTask(obj) {
+    this.showTaskForm = !this.showTaskForm;
+    this.taskService.addTask(obj.title, obj.description);
   }
 }

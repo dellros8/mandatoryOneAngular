@@ -1,16 +1,14 @@
 <div class="board">
-
-  <!-- Add click event binding for this button... -->
-  <button 
-    style="margin: 20px 0"
-    >
+  <button (click)="displayForm()" style="margin: 20px 0">
     New Task
   </button>
-  
+  <div *ngIf="showTaskForm">
+    <task-form (onSave)="saveTask($event)"></task-form>
+  </div>
+
   <div class="lists">
     <div *ngFor="let statusType of statusList">
-      <task-list [statusType]="statusType"></task-list>
+      <task-list [taskList]="filterTasks(statusType, taskList)" [statusType]="statusType"></task-list>
     </div>
-    <!-- Markup for task lists here... -->
   </div>
 </div>
