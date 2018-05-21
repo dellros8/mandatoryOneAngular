@@ -2,8 +2,8 @@
 
     <input [(ngModel)]="obj.title" name="title" class="input" type="text" placeholder="title" required minlength="3"/>
     
-    <div class="error">
-        <p *ngIf="isMinLength()">
+    <div class="error" *ngIf="isMinLength()">
+        <p>
             Minimum 3 letters in title!
         </p>
     </div>
